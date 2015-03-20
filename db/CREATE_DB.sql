@@ -27,12 +27,44 @@ create table if not exists [account] (
  ,foreign key([text_id]) references [text](id)
 );
 
+-- 交易类型
+create table if not exists [transaction](
+  [id] integer
+    primary key
+    autoincrement
+ ,[name] varchar(15)
+    not null
+ ,[text_id] integer               -- 长文本
+ ,[create_time] datetime          -- 创建时间
+    not null
+ ,foreign key([text_id]) references [text](id)
+);
+
+-- 流水账抬头
+create table if not exists [journal](
+  [id] integer                    -- 主键
+    primary key
+    autoincrement
+ ,[accounting_time] datetime      -- 交易时间
+    not null
+ ,[transaction_id] integer       -- 交易类型
+    not null
+ ,[create_time] datetime          -- 创建时间
+    not null
+ ,[text_id] integer               -- 长文本
+ ,foreign key([text_id]) references [text](id)
+ ,foreign key([transaction_id]) references [transaction](id)
+);
+
+
 -- 账本
 create table if not exists [book] (
   [id] integer                  -- 主键
     primary key
     autoincrement
  ,[account_id] integer          -- 科目外键
+    not null
+ ,[journal_id] integer          -- 流水账
     not null
  ,[transaction_id] integer      -- 交易ID
     not null
@@ -48,10 +80,5 @@ create table if not exists [book] (
     not null
  ,foreign key([account_id]) references [account](id)
  ,foreign key([text_id]) references [text](id)
+ ,foreign key([journal_id]) references [journal](id)
 );
-
--- 流水账抬头
-create table if not exists [journal](
-  [id]
-)
-
