@@ -18,6 +18,9 @@ public class AccountBookConfiguration {
 		try {
 			properties.load(inputStream);
 			dBConfiguration = properties.getProperty(AccountBookConfigurationKey.DBConfiguration);
+			webPort = Integer.valueOf(properties.getProperty(AccountBookConfigurationKey.WebPort));
+			webDescriptor = properties.getProperty(AccountBookConfigurationKey.WebDescriptor);
+			webResourceBase = properties.getProperty(AccountBookConfigurationKey.WebResourceBase);
 			properties.clone();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -25,8 +28,23 @@ public class AccountBookConfiguration {
 	}
 	
 	private static String dBConfiguration;
+	private static int webPort;
+	private static String webDescriptor;
+	private static String webResourceBase;
 	
 	public static String getDBConfiguration(){
 		return dBConfiguration;
+	}
+	
+	public static int getWebPort(){
+		return webPort;
+	}
+	
+	public static String getWebDescriptor(){
+		return webDescriptor;
+	}
+	
+	public static String getWebResourceBase(){
+		return webResourceBase;
 	}
 }
