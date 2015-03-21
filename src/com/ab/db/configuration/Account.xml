@@ -5,12 +5,12 @@
 <mapper namespace="com.ab.dao.AccountMessage">
 
 	<resultMap type="com.ab.bean.Account" id="accountMap">
-		<id column="id" jdbcType="INTEGER" property="id" />
-		<result column="name" jdbcType="VARCHAR" property="name" />
-		<result column="is_accounting" jdbcType="INTEGER" property="accounting" javaType="boolean"/>
-		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" javaType="java.util.Date"/>
-		<result column="father" jdbcType="INTEGER" property="father" />
-		<result column="depth" jdbcType="INTEGER" property="depth"/>
+		<id     column="id"            jdbcType="INTEGER"   property="id" />
+		<result column="name"          jdbcType="VARCHAR"   property="name" />
+		<result column="is_accounting" jdbcType="INTEGER"   property="accounting" javaType="boolean"/>
+		<result column="create_time"   jdbcType="TIMESTAMP" property="createTime" javaType="java.util.Date"/>
+		<result column="father"        jdbcType="INTEGER"   property="father" />
+		<result column="depth"         jdbcType="INTEGER"   property="depth"/>
 	</resultMap>
 
 	<select id="getAllAccounts" resultMap="accountMap">
