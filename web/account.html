@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Account 会计科目测试页面</title>
+<link rel="stylesheet" type="text/css" href="css/testPage.css">
+</head>
+<body>
+	<h1>Account 会计科目</h1>
+	<hr />
+	<div>
+		<div class="formPanel">
+			<form action="">
+				<div class="line">
+					<label>科目名称：</label><input type="text" name="name">
+				</div>
+				<div class="line">
+					<label>记账标记：</label><input type="radio" name="accounting" value="1" />True<input
+						type="radio" name="accounting" value="0" />False
+				</div>
+				<div class="line">
+					<label>父级科目ID：</label><input type="text" name="father" />
+				</div>
+				<div class="line">
+					<label>深度：</label><input type="text" name="depth" />
+				</div>
+				<div class="line">
+					<label>描述：</label>
+					<textarea rows="5"></textarea>
+				</div>
+				<div class="line">
+					<input type="submit" value="保存" /><input type="reset" value="清空" />
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
