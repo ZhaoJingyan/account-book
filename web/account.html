@@ -7,9 +7,9 @@
 <body>
 	<h1>Account 会计科目</h1>
 	<hr />
-	<div>
+	<div id="main">
 		<div class="formPanel">
-			<form action="">
+			<form method="post" action="/desg/dfas.test">
 				<div class="line">
 					<label>科目名称：</label><input type="text" name="name">
 				</div>
@@ -24,9 +24,12 @@
 					<label>深度：</label><input type="text" name="depth" />
 				</div>
 				<div class="line">
-					<label>描述：</label>
-					<textarea rows="5"></textarea>
+					<label style="padding-top: 0px">描述：</label>
 				</div>
+				<div class="textarea">
+					<textarea name="text" ></textarea>
+				</div>
+
 				<div class="line">
 					<input type="submit" value="保存" /><input type="reset" value="清空" />
 				</div>

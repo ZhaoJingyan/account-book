@@ -12,15 +12,15 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
-  <!--
+
   <servlet>
   	<load-on-startup>0</load-on-startup>
-  	<servlet-name>ServletDemo</servlet-name>
-  	<servlet-class>com.test.servlet.HelloServlet</servlet-class>
+  	<servlet-name>TestServlet</servlet-name>
+  	<servlet-class>com.ab.test.servlet.TestServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ServletDemo</servlet-name>
-    <url-pattern>*.do</url-pattern>
+    <servlet-name>TestServlet</servlet-name>
+    <url-pattern>*.test</url-pattern>
   </servlet-mapping>
-  -->
+
 </web-app>

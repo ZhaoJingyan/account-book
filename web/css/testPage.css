@@ -2,6 +2,18 @@
 	font-family: "Î¢ÈíÑÅºÚ"
 }
 
+div#main{
+	margin-left: auto;
+	margin-right: auto;
+	width: 600px
+}
+
+div.formPanel{
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%
+}
+
 form div.line{
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -15,7 +27,7 @@ form div.line label{
 	padding-top: 0px;
 	padding-bottom: 0px;
 	height: 30px;
-	width: 100px;
+	width: 25%;
 	display: inline-block;
 }
 
@@ -25,7 +37,7 @@ form div.line input[type="text"]{
 	padding-top: 0px;
 	padding-bottom: 0px;
 	height: 30px;
-	width: 300px;
+	width: 74%;
 	display: inline-block;
 }
 
@@ -42,8 +54,30 @@ form div.line input[type="submit"],input[type="reset"]{
 }
 
 div.formPanel {
-	padding: 10px;
-	border: 1px solid;
+	padding: 20px;
+	border: 1px solid #696;
 	display: inline-block;
 	border-radius: 15px;
+	box-shadow: #666 0px 0px 10px;
+}
+
+form div.line div.textarea {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	display: block;
+	width: 100%;
+}
+
+form div.textarea textarea {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	height: 150px;
+	width: 100%;
+	display: block;
 }
