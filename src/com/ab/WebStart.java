@@ -5,6 +5,12 @@ import org.eclipse.jetty.webapp.WebAppContext;
 
 import com.ab.resources.AccountBookConfiguration;
 
+/**
+ * 启动Jetty嵌入式服务器。
+ * 
+ * @author Zhao Jinyan
+ *
+ */
 public class WebStart {
 
 	public static void main(String[] args) {
@@ -15,10 +21,6 @@ public class WebStart {
 		context.setDescriptor(AccountBookConfiguration.getWebDescriptor());
 		context.setResourceBase(AccountBookConfiguration.getWebResourceBase());
 		context.setParentLoaderPriority(true);
-		
-		System.out.println(AccountBookConfiguration.getWebDescriptor());
-		System.out.println(AccountBookConfiguration.getWebResourceBase());
-		
 		server.setHandler(context);
 		
 		try {

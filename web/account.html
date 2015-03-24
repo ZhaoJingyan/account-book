@@ -2,39 +2,93 @@
 <html>
 <head>
 <title>Account 会计科目测试页面</title>
-<link rel="stylesheet" type="text/css" href="css/testPage.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="bootstrap/iCheck/all.css">
 </head>
 <body>
 	<h1>Account 会计科目</h1>
 	<hr />
-	<div id="main">
-		<div class="formPanel">
-			<form method="post" action="/desg/dfas.test">
-				<div class="line">
-					<label>科目名称：</label><input type="text" name="name">
-				</div>
-				<div class="line">
-					<label>记账标记：</label><input type="radio" name="accounting" value="1" />True<input
-						type="radio" name="accounting" value="0" />False
-				</div>
-				<div class="line">
-					<label>父级科目ID：</label><input type="text" name="father" />
-				</div>
-				<div class="line">
-					<label>深度：</label><input type="text" name="depth" />
-				</div>
-				<div class="line">
-					<label style="padding-top: 0px">描述：</label>
-				</div>
-				<div class="textarea">
-					<textarea name="text" ></textarea>
-				</div>
+	<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4>Account</h4>
+			</div>
+			<div class="panel-body">
+				<form class="form-horizontal" method="post" action="/desg/dfas.test" onsubmit="">
+					<div class="form-group">
+						<label for="name" class="col-sm-4 control-label">科目名称：</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" name="name" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">记账标记：</label>
+						<div class="col-sm-8">
+							<input type="radio" name="accounting" value="1" />&nbsp;<label class="control-label" for="accounting">True</label>&nbsp;&nbsp;<input
+								type="radio" name="accounting" value="0" checked="checked" />&nbsp;<label class="control-label" for="accounting">False</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">父级科目ID：</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" name="father" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">深度：</label>
+						<div class="col-sm-8">
+							<input class="col-sm-4 form-control" type="text" name="depth" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label" style="padding-top: 0px">描述：</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" name="text"></textarea>
+						</div>
+					</div>
 
-				<div class="line">
-					<input type="submit" value="保存" /><input type="reset" value="清空" />
-				</div>
-			</form>
+					<div class="form-group">
+						<div class="col-sm-2 col-md-offset-4"><input class="form-control btn btn-default" type="submit" value="保存" /></div><div class="col-sm-2"><input
+							class="form-control btn btn-default" type="reset" value="清空" /></div>
+					</div>
+				</form>
+			</div>
 		</div>
+		<div></div>
 	</div>
+
+	<script type="text/javascript" src="script/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bootstrap/iCheck/icheck.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+			$('input[type="radio"]').iCheck({
+				checkboxClass : 'icheckbox_square',
+				radioClass : 'iradio_square',
+				increaseArea : '20%'
+			});
+			
+			$('form').submit(function(){
+				$.ajax({
+					cache: true,
+					type: 'POST',
+					url:'ddd/dfasd.test',
+					data:$(this).serialize(),
+					async: false,
+					success: function(data){
+						alert(data);
+					},
+					error: function(request){
+						console.log('Test S');
+						console.log(request);
+					}
+				});
+				return false;
+			});
+			
+		});
+		
+	</script>
 </body>
 </html>
