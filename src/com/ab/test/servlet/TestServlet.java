@@ -17,7 +17,7 @@ public class TestServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter writer = response.getWriter();
 		
-		writer.println();
+		writer.println("Null!");
 
 	}
 
