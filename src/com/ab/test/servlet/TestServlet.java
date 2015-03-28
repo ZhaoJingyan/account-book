@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 @SuppressWarnings("serial")
 public class TestServlet extends HttpServlet {
 
-	@Override
-	protected void service(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter writer = response.getWriter();
+    @Override
+    protected void service(HttpServletRequest request,
+	    HttpServletResponse response) throws ServletException, IOException {
+	response.setContentType("text/html");
+	PrintWriter writer = response.getWriter();
 
-		writer.println("Null!");
+	writer.println("Null!");
 
-	}
+    }
 
 }

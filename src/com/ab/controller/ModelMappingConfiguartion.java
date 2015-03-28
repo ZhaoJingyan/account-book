@@ -7,31 +7,31 @@ package com.ab.controller;
  *
  */
 class ModelMappingConfiguartion {
-	public ModelMappingConfiguartion(String id) {
-		this.id = id;
-	}
+    public ModelMappingConfiguartion(String id) {
+	this.id = id;
+    }
 
-	private String id;
-	private String url;
-	private ModelConfiguartion modelConfiguartion;
+    private String id;
+    private String url;
+    private ModelConfiguartion modelConfiguartion;
 
-	public String getId() {
-		return this.id;
-	}
+    public String getId() {
+	return this.id;
+    }
 
-	public String getUrl() {
-		return this.url;
-	}
+    public String getUrl() {
+	return this.url;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public void setUrl(String url) {
+	this.url = url;
+    }
 
-	public void setModelConfiguartion(ModelConfiguartion modelConfiguartion) {
-		this.modelConfiguartion = modelConfiguartion;
-	}
+    public void setModelConfiguartion(ModelConfiguartion modelConfiguartion) {
+	this.modelConfiguartion = modelConfiguartion;
+    }
 
-	public String getModelClassName() {
-		return modelConfiguartion.getClazz();
-	}
+    public String getModelClassName() {
+	return modelConfiguartion.getClazz();
+    }
 }

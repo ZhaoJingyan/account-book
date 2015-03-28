@@ -13,22 +13,22 @@ import com.ab.resources.AccountBookConfiguration;
  */
 public class WebStart {
 
-	public static void main(String[] args) {
-		Server server = new Server(AccountBookConfiguration.getWebPort());
+    public static void main(String[] args) {
+	Server server = new Server(AccountBookConfiguration.getWebPort());
 
-		WebAppContext context = new WebAppContext();
-		context.setContextPath("/");
-		context.setDescriptor(AccountBookConfiguration.getWebDescriptor());
-		context.setResourceBase(AccountBookConfiguration.getWebResourceBase());
-		context.setParentLoaderPriority(true);
-		server.setHandler(context);
+	WebAppContext context = new WebAppContext();
+	context.setContextPath("/");
+	context.setDescriptor(AccountBookConfiguration.getWebDescriptor());
+	context.setResourceBase(AccountBookConfiguration.getWebResourceBase());
+	context.setParentLoaderPriority(true);
+	server.setHandler(context);
 
-		try {
-			server.start();
-			server.join();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	try {
+	    server.start();
+	    server.join();
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
+    }
 
 }

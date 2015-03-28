@@ -11,51 +11,50 @@ import java.util.Properties;
  *
  */
 public class AccountBookConfiguration {
-	static {
-		InputStream inputStream = AccountBookConfiguration.class
-				.getClassLoader().getResourceAsStream("AccountBook.properties");
-		Properties properties = new Properties();
-		try {
-			properties.load(inputStream);
-			dBConfiguration = properties
-					.getProperty(AccountBookConfigurationKey.DBConfiguration);
-			webPort = Integer.valueOf(properties
-					.getProperty(AccountBookConfigurationKey.WebPort));
-			webDescriptor = properties
-					.getProperty(AccountBookConfigurationKey.WebDescriptor);
-			webResourceBase = properties
-					.getProperty(AccountBookConfigurationKey.WebResourceBase);
-			controllerConfiguration = properties
-					.getProperty(AccountBookConfigurationKey.ControllerConfiguration);
-			properties.clone();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    static {
+	InputStream inputStream = AccountBookConfiguration.class
+		.getClassLoader().getResourceAsStream("AccountBook.properties");
+	Properties properties = new Properties();
+	try {
+	    properties.load(inputStream);
+	    dBConfiguration = properties
+		    .getProperty(AccountBookConfigurationKey.DBConfiguration);
+	    webPort = Integer.valueOf(properties
+		    .getProperty(AccountBookConfigurationKey.WebPort));
+	    webDescriptor = properties
+		    .getProperty(AccountBookConfigurationKey.WebDescriptor);
+	    webResourceBase = properties
+		    .getProperty(AccountBookConfigurationKey.WebResourceBase);
+	    controllerConfiguration = properties
+		    .getProperty(AccountBookConfigurationKey.ControllerConfiguration);
+	} catch (IOException e) {
+	    e.printStackTrace();
 	}
+    }
 
-	private static String dBConfiguration;
-	private static int webPort;
-	private static String webDescriptor;
-	private static String webResourceBase;
-	private static String controllerConfiguration;
+    private static String dBConfiguration;
+    private static int webPort;
+    private static String webDescriptor;
+    private static String webResourceBase;
+    private static String controllerConfiguration;
 
-	public static String getDBConfiguration() {
-		return dBConfiguration;
-	}
+    public static String getDBConfiguration() {
+	return dBConfiguration;
+    }
 
-	public static int getWebPort() {
-		return webPort;
-	}
+    public static int getWebPort() {
+	return webPort;
+    }
 
-	public static String getWebDescriptor() {
-		return webDescriptor;
-	}
+    public static String getWebDescriptor() {
+	return webDescriptor;
+    }
 
-	public static String getWebResourceBase() {
-		return webResourceBase;
-	}
+    public static String getWebResourceBase() {
+	return webResourceBase;
+    }
 
-	public static String getControllerConfiguration() {
-		return controllerConfiguration;
-	}
+    public static String getControllerConfiguration() {
+	return controllerConfiguration;
+    }
 }

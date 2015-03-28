@@ -8,19 +8,19 @@ import com.ab.bean.Account;
 
 public class AccountDao extends Dao implements AccountMessage {
 
-	public AccountDao() {
-	}
+    public AccountDao() {
+    }
 
-	public void setSession(SqlSession session) {
-		super.setSession(session);
-		this.accountMessage = this.session.getMapper(AccountMessage.class);
-	};
+    public void setSession(SqlSession session) {
+	super.setSession(session);
+	this.accountMessage = this.session.getMapper(AccountMessage.class);
+    };
 
-	private AccountMessage accountMessage;
+    private AccountMessage accountMessage;
 
-	@Override
-	public List<Account> getAllAccounts() {
-		return this.accountMessage.getAllAccounts();
-	}
+    @Override
+    public List<Account> getAllAccounts() {
+	return this.accountMessage.getAllAccounts();
+    }
 
 }

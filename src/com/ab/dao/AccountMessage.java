@@ -11,5 +11,5 @@ import com.ab.bean.Account;
  *
  */
 public interface AccountMessage {
-	public List<Account> getAllAccounts();
+    public List<Account> getAllAccounts();
 }
