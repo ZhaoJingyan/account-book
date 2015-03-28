@@ -27,20 +27,25 @@ import org.xml.sax.SAXException;
 @SuppressWarnings("serial")
 public class Controller extends HttpServlet {
 
+    // ---------------------------------------------- Static Properties
+
     public static Log log = LogFactory.getLog(Controller.class);
     public static final short GET = 0;
     public static final short POST = 1;
     public static final String MODELS = "_MODELS_";
 
+    // ---------------------------------------------- Private Properties
+
     private ControllerConfiguration configuration;
+
+    // ---------------------------------------------- Servlet Method
 
     /**
      * 初始化Servlet。
      */
     @Override
     public void init() throws ServletException {
-	log.debug("DEBUG - 初始化Controller");
-	log.info("INFO - 初始化Controller");
+	log.debug("commons-logging 测试");
 	try {
 
 	    /* 获取配置信息 */
@@ -49,6 +54,7 @@ public class Controller extends HttpServlet {
 	} catch (ParserConfigurationException | SAXException | IOException e) {
 	    log.warn("初始化Configuration失败", e);
 	}
+
     }
 
     /**
@@ -69,6 +75,8 @@ public class Controller extends HttpServlet {
 	run(request, response, POST);
     }
 
+    // ---------------------------------------------- Control Method
+
     /**
      * 执行客户端请求。
      * 
@@ -81,9 +89,12 @@ public class Controller extends HttpServlet {
     private final void run(HttpServletRequest request,
 	    HttpServletResponse response, short action)
 	    throws ServletException, IOException {
-	/* 获取对应model */
+	
 	Model model;
+	
 	try {
+	    
+	    // 获取model，并进行相应的处理
 	    model = getModel(request, response);
 	    if (model == null) {
 		/* 404 处理 */
@@ -94,9 +105,11 @@ public class Controller extends HttpServlet {
 	    } else if (action == POST) {
 		model.post();
 	    }
+	    
 	} catch (IllegalAccessException | InvocationTargetException e) {
-	    throw new ServletException(e);
+	    log.error("", e);
 	}
+	
     }
 
     /**
@@ -104,29 +117,33 @@ public class Controller extends HttpServlet {
      * 
      * @param request 客户对请求数据
      * @param response 服务器返回数据
-     * @return Model
-     * @throws IOException
-     * @throws InvocationTargetException
-     * @throws IllegalAccessException
+     * @return Model Model
+     * @throws IOException IO错误
+     * @throws InvocationTargetException 反射错误
+     * @throws IllegalAccessException 反射错误
      */
     private final Model getModel(HttpServletRequest request,
 	    HttpServletResponse response) throws IOException,
 	    IllegalAccessException, InvocationTargetException {
+	
 	HttpSession session = request.getSession(); // 获取session
 	String uri = request.getRequestURI(); // 获取uri
-	String url = uri.substring(0, uri.lastIndexOf(".")); // 去后缀
-	Map<String, Model> models = getModels(session); // 从session中获取models
-	Model model = models.get(url);
+	String url = uri.substring(0, uri.lastIndexOf(".")); // 去后缀，的到url
+	Map<String, Model> models = getModels(session); // 从session中获取说有的model
+	Model model = models.get(url); // 更具对应的url，得到model
 
+	// 如果没有对应的model，尝试创建model
 	if (model == null)
 	    model = createModel(url);
 
+	// 重新配置model
 	if (model != null) {
 	    setModelProperties(model, request, response);
 	    model.init();
 	}
 
 	return model;
+	
     }
 
     /**
@@ -136,14 +153,16 @@ public class Controller extends HttpServlet {
      * @return model映射关系表
      */
     private final Map<String, Model> getModels(HttpSession session) {
+	
+	// 获取model映射关系表，如果没有，则创建新的
 	ModelsTable modelsTable = (ModelsTable) session.getAttribute(MODELS);
-
 	if (modelsTable == null) {
 	    modelsTable = new ModelsTable();
 	    modelsTable.setModels(new HashMap<String, Model>());
 	}
 
 	return modelsTable.getModels();
+	
     }
 
     /**
@@ -153,8 +172,10 @@ public class Controller extends HttpServlet {
      * @return
      */
     private final Model createModel(String url) {
+	
 	String className = configuration.getModelClassName(url);
 	Model model = null;
+	
 	try {
 	    if (className != null) {
 		Class<?> clazz = Class.forName(className);
@@ -172,16 +193,17 @@ public class Controller extends HttpServlet {
 	}
 
 	return model;
+	
     }
 
     /**
      * 为Model装填bean属性。
      * 
-     * @param object
-     * @param request
-     * @param response
-     * @throws IllegalAccessException
-     * @throws InvocationTargetException
+     * @param object Model
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws IllegalAccessException 反射异常
+     * @throws InvocationTargetException 反射异常
      */
     private final void setModelProperties(Object object,
 	    HttpServletRequest request, HttpServletResponse response)
@@ -200,7 +222,10 @@ public class Controller extends HttpServlet {
 	BeanUtils.populate(object, values);
     }
 
+    // ---------------------------------------------- Inner Classes
+
     private class ModelsTable {
+	
 	private Map<String, Model> models;
 
 	public Map<String, Model> getModels() {
@@ -210,5 +235,6 @@ public class Controller extends HttpServlet {
 	public void setModels(Map<String, Model> models) {
 	    this.models = models;
 	}
+	
     }
 }
