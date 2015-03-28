@@ -11,9 +11,10 @@ import java.util.Date;
 public abstract class Bean {
 	protected String text;
 	protected Date createTime;
-	
+
 	/**
 	 * 获取长文本。
+	 * 
 	 * @return 长文本
 	 */
 	public String getText() {
@@ -23,7 +24,8 @@ public abstract class Bean {
 	/**
 	 * 设置长文本。
 	 * 
-	 * @param text 长文本
+	 * @param text
+	 *            长文本
 	 */
 	public void setText(String text) {
 		this.text = text;
@@ -41,7 +43,8 @@ public abstract class Bean {
 	/**
 	 * 设置创建时间。
 	 * 
-	 * @param createTime 创建时间
+	 * @param createTime
+	 *            创建时间
 	 */
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;

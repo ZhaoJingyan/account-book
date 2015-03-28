@@ -17,34 +17,45 @@ public class AccountBookConfiguration {
 		Properties properties = new Properties();
 		try {
 			properties.load(inputStream);
-			dBConfiguration = properties.getProperty(AccountBookConfigurationKey.DBConfiguration);
-			webPort = Integer.valueOf(properties.getProperty(AccountBookConfigurationKey.WebPort));
-			webDescriptor = properties.getProperty(AccountBookConfigurationKey.WebDescriptor);
-			webResourceBase = properties.getProperty(AccountBookConfigurationKey.WebResourceBase);
+			dBConfiguration = properties
+					.getProperty(AccountBookConfigurationKey.DBConfiguration);
+			webPort = Integer.valueOf(properties
+					.getProperty(AccountBookConfigurationKey.WebPort));
+			webDescriptor = properties
+					.getProperty(AccountBookConfigurationKey.WebDescriptor);
+			webResourceBase = properties
+					.getProperty(AccountBookConfigurationKey.WebResourceBase);
+			controllerConfiguration = properties
+					.getProperty(AccountBookConfigurationKey.ControllerConfiguration);
 			properties.clone();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static String dBConfiguration;
 	private static int webPort;
 	private static String webDescriptor;
 	private static String webResourceBase;
-	
-	public static String getDBConfiguration(){
+	private static String controllerConfiguration;
+
+	public static String getDBConfiguration() {
 		return dBConfiguration;
 	}
-	
-	public static int getWebPort(){
+
+	public static int getWebPort() {
 		return webPort;
 	}
-	
-	public static String getWebDescriptor(){
+
+	public static String getWebDescriptor() {
 		return webDescriptor;
 	}
-	
-	public static String getWebResourceBase(){
+
+	public static String getWebResourceBase() {
 		return webResourceBase;
+	}
+
+	public static String getControllerConfiguration() {
+		return controllerConfiguration;
 	}
 }

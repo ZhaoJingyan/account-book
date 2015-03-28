@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<models>
+	<model id="test" class="com.ab.model.AccountModel"  />
+	<model-mapping id="test">
+		<url>/account</url>
+	</model-mapping>
+</models>

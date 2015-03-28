@@ -33,7 +33,8 @@ public class DaoManager {
 	/**
 	 * 获取一个Dao
 	 * 
-	 * @param clazz 一个Dao的Class类
+	 * @param clazz
+	 *            一个Dao的Class类
 	 * @return clazz表示的Dao的实现
 	 */
 	public Dao getDao(Class<? extends Dao> clazz) {

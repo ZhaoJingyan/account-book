@@ -67,7 +67,8 @@ public class Account extends Bean {
 	/**
 	 * 设置可记账标记。
 	 * 
-	 * @param accounting 可记账标记
+	 * @param accounting
+	 *            可记账标记
 	 */
 	public void setAccounting(boolean accounting) {
 		this.accounting = accounting;
@@ -75,6 +76,7 @@ public class Account extends Bean {
 
 	/**
 	 * 获取父级科目ID。
+	 * 
 	 * @return 父级科目ID
 	 */
 	public int getFather() {
@@ -84,7 +86,8 @@ public class Account extends Bean {
 	/**
 	 * 设置父级科目ID
 	 * 
-	 * @param father 父级科目ID
+	 * @param father
+	 *            父级科目ID
 	 */
 	public void setFather(int father) {
 		this.father = father;
@@ -102,7 +105,8 @@ public class Account extends Bean {
 	/**
 	 * 设置科目深度
 	 * 
-	 * @param depth 深度
+	 * @param depth
+	 *            深度
 	 */
 	public void setDepth(int depth) {
 		this.depth = depth;
