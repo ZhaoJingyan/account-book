@@ -12,15 +12,19 @@ public class AccountModel extends Model {
 	public void post() throws ServletException, IOException {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("utf-8");
-		response.getWriter().println("<h1>Test AccountModel !!! </h1>");
+		writer.println(name);
 	}
 
 	@Override
 	public void get() throws ServletException, IOException {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("utf-8");
-		response.getWriter().println("<h1>Test AccountModel !!! </h1>");
+		writer.println("<h1>Test AccountModel<GET> !!! </h1>");
 	}
 
+	private String name;
 	
+	public void setName(String name){
+		this.name = name;
+	}
 }

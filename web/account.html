@@ -14,7 +14,7 @@
 				<h4>Account</h4>
 			</div>
 			<div class="panel-body">
-				<form class="form-horizontal" method="post" action="/desg/dfas.test" onsubmit="">
+				<form class="form-horizontal" method="post" action="account.test" onsubmit="">
 					<div class="form-group">
 						<label for="name" class="col-sm-4 control-label">¿ÆÄ¿Ãû³Æ£º</label>
 						<div class="col-sm-8">
@@ -73,7 +73,7 @@
 				$.ajax({
 					cache: true,
 					type: 'POST',
-					url:'ddd/dfasd.test',
+					url:'/account.test',
 					data:$(this).serialize(),
 					async: false,
 					success: function(data){
