@@ -8,8 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public abstract class Model {
+import com.google.gson.Gson;
 
+public abstract class Model {
+    
+    public static final String application_json = "application/json";
+    
     /**
      * 初始换。
      */
@@ -39,6 +43,7 @@ public abstract class Model {
     protected HttpServletResponse response;
     protected HttpSession session;
     protected PrintWriter writer;
+    protected Gson gson;
 
     /**
      * 跳转到jsp页面。
@@ -49,22 +54,33 @@ public abstract class Model {
 
     }
 
-    protected void gtoJson() {
+    /**
+     * 将自生转化为Model
+     */
+    protected void gotoJson() {
 	gotoJson(this);
     }
 
     protected void gotoJson(Object object) {
-
+	setContentType(application_json);
+	writer.print(gson.toJson(object));
     }
 
-    public void setRequest(HttpServletRequest request) {
+    protected final void setContentType(String contentType){
+	response.setContentType(contentType);
+    }
+    
+    public void _setRequest(HttpServletRequest request) {
 	this.request = request;
 	session = request.getSession();
     }
 
-    public void setResponse(HttpServletResponse response) throws IOException {
+    public void _setResponse(HttpServletResponse response) throws IOException {
 	this.response = response;
 	writer = response.getWriter();
     }
 
+    public void _setGson(Gson gson){
+	this.gson = gson;
+    }
 }

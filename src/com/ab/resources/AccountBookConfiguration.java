@@ -27,6 +27,8 @@ public class AccountBookConfiguration {
 		    .getProperty(AccountBookConfigurationKey.WebResourceBase);
 	    controllerConfiguration = properties
 		    .getProperty(AccountBookConfigurationKey.ControllerConfiguration);
+	    dateFormate = properties
+		    .getProperty(AccountBookConfigurationKey.DateFormate);
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
@@ -37,6 +39,7 @@ public class AccountBookConfiguration {
     private static String webDescriptor;
     private static String webResourceBase;
     private static String controllerConfiguration;
+    private static String dateFormate;
 
     public static String getDBConfiguration() {
 	return dBConfiguration;
@@ -56,5 +59,9 @@ public class AccountBookConfiguration {
 
     public static String getControllerConfiguration() {
 	return controllerConfiguration;
+    }
+
+    public static String getDateFormate() {
+	return dateFormate;
     }
 }

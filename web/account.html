@@ -16,37 +16,36 @@
 			<div class="panel-body">
 				<form class="form-horizontal" method="post" action="account.test" onsubmit="">
 					<div class="form-group">
-						<label for="name" class="col-sm-4 control-label">科目名称：</label>
+						<label for="account.name" class="col-sm-4 control-label">科目名称：</label>
 						<div class="col-sm-8">
-							<input class="form-control" type="text" name="name" />
+							<input class="form-control" type="text" name="account.name" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 control-label">记账标记：</label>
+						<label for="account.accounting" class="col-sm-4 control-label">记账标记：</label>
 						<div class="col-sm-8">
-							<input type="radio" name="accounting" value="1" />&nbsp;<label class="control-label" for="accounting">True</label>&nbsp;&nbsp;<input
-								type="radio" name="accounting" value="0" checked="checked" />&nbsp;<label class="control-label" for="accounting">False</label>
+							<input type="radio" name="account.accounting" value="1" />&nbsp;<label class="control-label" for="accounting">True</label>&nbsp;&nbsp;<input
+								type="radio" name="account.accounting" value="0" checked="checked" />&nbsp;<label class="control-label" for="accounting">False</label>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 control-label">父级科目ID：</label>
+						<label for="account.father" class="col-sm-4 control-label">父级科目ID：</label>
 						<div class="col-sm-8">
-							<input class="form-control" type="text" name="father" />
+							<input class="form-control" type="text" name="account.father" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 control-label">深度：</label>
+						<label for="account.depth" class="col-sm-4 control-label">深度：</label>
 						<div class="col-sm-8">
-							<input class="col-sm-4 form-control" type="text" name="depth" />
+							<input class="col-sm-4 form-control" type="text" name="account.depth" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 control-label" style="padding-top: 0px">描述：</label>
+						<label for="account.text" class="col-sm-4 control-label" style="padding-top: 0px">描述：</label>
 						<div class="col-sm-8">
-							<textarea class="form-control" name="text"></textarea>
+							<textarea class="form-control" name="account.text"></textarea>
 						</div>
 					</div>
-
 					<div class="form-group">
 						<div class="col-sm-2 col-md-offset-4"><input class="form-control btn btn-default" type="submit" value="保存" /></div><div class="col-sm-2"><input
 							class="form-control btn btn-default" type="reset" value="清空" /></div>

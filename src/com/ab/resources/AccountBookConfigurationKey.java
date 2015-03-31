@@ -6,4 +6,5 @@ public class AccountBookConfigurationKey {
     public static final String WebDescriptor = "WebDescriptor";
     public static final String WebResourceBase = "WebResourceBase";
     public static final String ControllerConfiguration = "ControllerConfiguration";
+    public static final String DateFormate = "DateFormate";
 }

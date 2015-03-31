@@ -18,6 +18,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.xml.sax.SAXException;
 
+import com.ab.resources.AccountBookConfiguration;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 /**
  * Servlet控制器，接收来自前端的命令请求，并定位Model。
  * 
@@ -37,6 +41,7 @@ public class Controller extends HttpServlet {
     // ---------------------------------------------- Private Properties
 
     private ControllerConfiguration configuration;
+    private Gson gson;
 
     // ---------------------------------------------- Servlet Method
 
@@ -45,7 +50,10 @@ public class Controller extends HttpServlet {
      */
     @Override
     public void init() throws ServletException {
-	log.debug("commons-logging 测试");
+
+	gson = new GsonBuilder().setDateFormat(
+		AccountBookConfiguration.getDateFormate()).create();
+
 	try {
 
 	    /* 获取配置信息 */
@@ -89,11 +97,11 @@ public class Controller extends HttpServlet {
     private final void run(HttpServletRequest request,
 	    HttpServletResponse response, short action)
 	    throws ServletException, IOException {
-	
+
 	Model model;
-	
+
 	try {
-	    
+
 	    // 获取model，并进行相应的处理
 	    model = getModel(request, response);
 	    if (model == null) {
@@ -105,11 +113,11 @@ public class Controller extends HttpServlet {
 	    } else if (action == POST) {
 		model.post();
 	    }
-	    
+
 	} catch (IllegalAccessException | InvocationTargetException e) {
 	    log.error("", e);
 	}
-	
+
     }
 
     /**
@@ -125,7 +133,7 @@ public class Controller extends HttpServlet {
     private final Model getModel(HttpServletRequest request,
 	    HttpServletResponse response) throws IOException,
 	    IllegalAccessException, InvocationTargetException {
-	
+
 	HttpSession session = request.getSession(); // 获取session
 	String uri = request.getRequestURI(); // 获取uri
 	String url = uri.substring(0, uri.lastIndexOf(".")); // 去后缀，的到url
@@ -139,11 +147,14 @@ public class Controller extends HttpServlet {
 	// 重新配置model
 	if (model != null) {
 	    setModelProperties(model, request, response);
+	    model._setGson(this.gson);
+	    model._setRequest(request);
+	    model._setResponse(response);
 	    model.init();
 	}
 
 	return model;
-	
+
     }
 
     /**
@@ -153,7 +164,7 @@ public class Controller extends HttpServlet {
      * @return model映射关系表
      */
     private final Map<String, Model> getModels(HttpSession session) {
-	
+
 	// 获取model映射关系表，如果没有，则创建新的
 	ModelsTable modelsTable = (ModelsTable) session.getAttribute(MODELS);
 	if (modelsTable == null) {
@@ -162,21 +173,24 @@ public class Controller extends HttpServlet {
 	}
 
 	return modelsTable.getModels();
-	
+
     }
 
     /**
      * 创建一个model，若果无法创建，返回null。
      * 
-     * @param url
+     * @param url Model对应的URL
      * @return
      */
     private final Model createModel(String url) {
-	
+
+	// 获取model的class name
 	String className = configuration.getModelClassName(url);
 	Model model = null;
-	
+
 	try {
+
+	    // 通过反射得到Model的实现
 	    if (className != null) {
 		Class<?> clazz = Class.forName(className);
 		Object object = clazz.newInstance();
@@ -193,7 +207,7 @@ public class Controller extends HttpServlet {
 	}
 
 	return model;
-	
+
     }
 
     /**
@@ -211,9 +225,7 @@ public class Controller extends HttpServlet {
 
 	Enumeration<String> names = request.getParameterNames();
 	Map<String, Object> values = new HashMap<String, Object>();
-	values.put("request", request);
-	values.put("response", response);
-
+	
 	while (names.hasMoreElements()) {
 	    String name = names.nextElement();
 	    values.put(name, request.getParameterValues(name));
@@ -225,7 +237,7 @@ public class Controller extends HttpServlet {
     // ---------------------------------------------- Inner Classes
 
     private class ModelsTable {
-	
+
 	private Map<String, Model> models;
 
 	public Map<String, Model> getModels() {
@@ -235,6 +247,6 @@ public class Controller extends HttpServlet {
 	public void setModels(Map<String, Model> models) {
 	    this.models = models;
 	}
-	
+
     }
 }
